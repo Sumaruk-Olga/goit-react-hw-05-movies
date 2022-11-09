@@ -5,11 +5,10 @@ const MovieDetails = () => {
     const { movieId } = useParams();
     const location = useLocation();
     console.log('movieId', movieId);
-    console.log('location', location);
-    console.log('location.state', location.state);
-    console.log('location.state.from', location.state.from);
-    const backLinkHref = location.state?.from ?? '/';
     
+    let backLinkHref = location.state?.from ?? '/';
+    // console.log('backLinkHref.pathname', backLinkHref.pathname);    
+
     // буде приходити динамічне qwe
     return <div>
         <StyledLink to={backLinkHref}>
@@ -18,11 +17,9 @@ const MovieDetails = () => {
         
         <p>MovieDetails</p>
         <p>some info</p>
-        <StyledLink to="cast">link for more cast details</StyledLink>
-        <StyledLink to="reviews">link for more reviews details</StyledLink>
+        <StyledLink to="cast" state={{ from: location.state.from }}>link for more cast details</StyledLink>
+        <StyledLink to="reviews" state={{ from: location.state.from }}>link for more reviews details</StyledLink>
         <Outlet/>
     </div>
 };
 export default MovieDetails;
-
-// reviews  Reviews
