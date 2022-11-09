@@ -1,4 +1,5 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
+import StyledLink from "components/SharedNavigation/SharedNavigstion.styled";
 
 const MovieDetails = () => {    
     const { movieId } = useParams();
@@ -8,8 +9,8 @@ const MovieDetails = () => {
     return <div>
         <p>MovieDetails</p>
         <p>some info</p>
-        <Link to="cast">link for more cast details</Link>
-        <Link to="reviews">link for more reviews details</Link>
+        <StyledLink to="cast">link for more cast details</StyledLink>
+        <StyledLink to="reviews">link for more reviews details</StyledLink>
         <Outlet/>
     </div>
 };

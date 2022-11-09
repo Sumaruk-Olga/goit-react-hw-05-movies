@@ -1,12 +1,13 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import StyledLink from "./SharedNavigstion.styled";
 
 const SharedNavigstion = () => {
     return (
     <>
       <header>        
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/movies">Movies</Link>          
+          <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="/movies">Movies</StyledLink>          
         </nav>
       </header>
         <Outlet />
@@ -15,3 +16,4 @@ const SharedNavigstion = () => {
     )
 };
 export default SharedNavigstion;
+
