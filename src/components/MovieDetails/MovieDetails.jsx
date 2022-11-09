@@ -5,7 +5,7 @@ import StyledLink from "components/SharedNavigation/SharedNavigstion.styled";
 const MovieDetails = () => {    
     const { movieId } = useParams();
     const location = useLocation();
-    // console.log('movieId', movieId);
+    console.log('movieId', movieId);
     
     let backLinkHref = location.state?.from ?? '/';
     // console.log('backLinkHref.pathname', backLinkHref.pathname);    
