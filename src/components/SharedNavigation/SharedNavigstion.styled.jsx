@@ -8,7 +8,7 @@ const StyledLink = styled(NavLink)`
         color:red;
     }
 
-     :hover:not(.active) {
+    :hover:not(.active) {
     color: orange;
   }
 `;

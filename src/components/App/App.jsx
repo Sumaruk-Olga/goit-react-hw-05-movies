@@ -1,21 +1,17 @@
 import { Routes, Route } from "react-router-dom";
+import { lazy } from "react";
 import Home from "pages/Home/Home";
 import Movies from "pages/Movies/Movies";
 import NotFound from "pages/NotFound/NotFound";
-import SharedNavigstion from "components/SharedNavigation/SharedNavigation";
-import MovieDetails from "components/MovieDetails/MovieDetails";
 import Cast from "components/Cast/Cast";
 import Reviews from "components/Reviews/Reviews";
 
-
-
-
+const MovieDetails = lazy(() => import("components/MovieDetails/MovieDetails"));
+const SharedNavigstion = lazy(()=>import("components/SharedNavigation/SharedNavigation"));
 
 const App = () => {
   return (
     <div>
-      
-
       <Routes>
         <Route path="/" element={<SharedNavigstion />}>
           <Route index element={ <Home/>} />
@@ -32,7 +28,4 @@ const App = () => {
 };
 
 export default App;
-
-// <Route path="products" element={<Products />} />
-// <Route path="products/:id" element={<ProductDetails />} /> 
 

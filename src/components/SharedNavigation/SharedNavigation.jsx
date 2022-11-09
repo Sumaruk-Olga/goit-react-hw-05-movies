@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { Suspense } from "react";
 import StyledLink from "./SharedNavigstion.styled";
 
 const SharedNavigstion = () => {
@@ -10,9 +11,10 @@ const SharedNavigstion = () => {
           <StyledLink to="/movies">Movies</StyledLink>          
         </nav>
       </header>
-        <Outlet />
-    </>
-    
+        <Suspense fallback={<div>Loading...</div>}>
+            <Outlet/>
+        </Suspense>
+    </>    
     )
 };
 export default SharedNavigstion;

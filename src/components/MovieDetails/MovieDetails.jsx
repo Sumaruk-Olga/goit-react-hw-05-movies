@@ -1,10 +1,11 @@
 import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Suspense } from "react";
 import StyledLink from "components/SharedNavigation/SharedNavigstion.styled";
 
 const MovieDetails = () => {    
     const { movieId } = useParams();
     const location = useLocation();
-    console.log('movieId', movieId);
+    // console.log('movieId', movieId);
     
     let backLinkHref = location.state?.from ?? '/';
     // console.log('backLinkHref.pathname', backLinkHref.pathname);    
@@ -19,7 +20,9 @@ const MovieDetails = () => {
         <p>some info</p>
         <StyledLink to="cast" state={{ from: location.state.from }}>link for more cast details</StyledLink>
         <StyledLink to="reviews" state={{ from: location.state.from }}>link for more reviews details</StyledLink>
-        <Outlet/>
+        <Suspense fallback={<div>Loading...</div>}>
+            <Outlet/>
+        </Suspense>
     </div>
 };
 export default MovieDetails;
