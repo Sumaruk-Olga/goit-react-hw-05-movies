@@ -5,8 +5,8 @@ import NotFound from "pages/NotFound/NotFound";
 const Movies = lazy(() => import("pages/Movies/Movies"));
 const MovieDetails = lazy(() => import("pages/MovieDetails/MovieDetails"));
 const SharedNavigstion = lazy(()=>import("components/SharedNavigation/SharedNavigation"));
-const Cast = lazy(() => import("components/Cast/Cast"));
-const Reviews = lazy(() => import("components/Reviews/Reviews"));
+const Cast = lazy(() => import("pages/Cast/Cast"));
+const Reviews = lazy(() => import("pages/Reviews/Reviews"));
 
 const App = () => {
   return (
