@@ -40,8 +40,10 @@ const MovieDetails = () => {
                 setCast(data);
             } catch (error) {
                 setError(error.message);
-            } 
-            return data;
+            } finally {
+                return data;
+            }
+            
     }    
     
     const handleReviewsClick = async () => {
@@ -51,11 +53,13 @@ const MovieDetails = () => {
                 setReviews(data);
             } catch (error) {
                 setError(error.message);
-            } 
-        return data;
+            } finally {
+                return data;
+            }
+        
         }
 
-    return <div>        
+    return <main>        
         {loading && <Loading />}
         {error && <div>Sorry, ...</div>}
         {movie && <>
@@ -64,12 +68,12 @@ const MovieDetails = () => {
             </StyledLink>
             <p>MovieDetails</p>
             <p>some info</p>
-            <StyledLink to="cast" state={{ from: location.state.from, state:cast }} onClick={handleCastClick}>link for more cast details</StyledLink>
-            <StyledLink to="reviews" state={{ from: location.state.from, state:reviews }} id={movieId} onClick={handleReviewsClick}>link for more reviews details</StyledLink>
+            <StyledLink to="cast" state={{ from: location.state.from, state: cast }} onClick={handleCastClick}>link for more cast details</StyledLink>
+            <StyledLink to="reviews" state={{ from: location.state.from, state: reviews }} id={movieId} onClick={handleReviewsClick}>link for more reviews details</StyledLink>
             <Suspense fallback={<Loading/>}>
                 <Outlet/>
             </Suspense>
         </>}
-    </div>
+    </main>
 };
 export default MovieDetails;

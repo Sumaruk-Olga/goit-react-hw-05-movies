@@ -24,11 +24,11 @@ const Home = () => {
     fetchData();
 }, []);
 
-    return <div>        
+    return <main>        
         {loading && <Loading />}
-        {error && <div>Sorry, ...</div>}
+        {error && <h1>Sorry, ...</h1>}
         { movies?.length > 0 && <>
-            <p>Trending </p>
+            <h1>Trending movies</h1>
             <ul>{movies.map(item => {
                 const movieId = item.id;
                 return <li key={item.id}>
@@ -38,6 +38,6 @@ const Home = () => {
             </ul>
             </>
         } 
-    </div>
+    </main>
 };
 export default Home;

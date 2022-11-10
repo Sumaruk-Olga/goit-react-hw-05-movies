@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 
 const Reviews = () => {
     const location = useLocation();        
-    return <div> Reviews info {location.state.state.id}</div>
+    console.log('locationin reviews', location.state.state);
+    return <div> Reviews info </div>
 };
 export default Reviews;

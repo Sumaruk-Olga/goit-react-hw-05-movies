@@ -48,8 +48,7 @@ const Movies = () => {
         setSearchParams(searchValue !== '' ? { search: searchValue } : {});        
     }
 
-    return <div>
-        <p>Movies searchbar</p>
+    return <main>        
         <Formik initialValues={{ searchValue: '' }}
             validationSchema={validationSchema}
             onSubmit={(values, {resetForm}) => {
@@ -81,6 +80,6 @@ const Movies = () => {
 
             </> 
         }         
-    </div>
+    </main>
 };
 export default Movies;
