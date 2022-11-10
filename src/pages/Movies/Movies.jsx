@@ -73,8 +73,7 @@ const Movies = () => {
             </ul>
 
             </> 
-        } 
-        {/* <Link to="movieId" state={{ from: location }}>film</Link> */}
+        }         
     </div>
 };
 export default Movies;
