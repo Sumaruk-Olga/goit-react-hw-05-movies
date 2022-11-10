@@ -41,22 +41,20 @@ const MovieDetails = () => {
             } catch (error) {
                 setError(error.message);
             } finally {
-                return data;
+                console.log(data);
             }
-            
+            return data;
     }    
     
     const handleReviewsClick = async () => {
         let data;
             try {
-                data = await searchReviews(movieId);                
+                data = await searchReviews(movieId);
                 setReviews(data);
             } catch (error) {
                 setError(error.message);
-            } finally {
+            }       
                 return data;
-            }
-        
         }
 
     return <main>        
