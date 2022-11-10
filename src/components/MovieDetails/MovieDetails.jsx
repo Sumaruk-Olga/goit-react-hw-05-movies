@@ -12,7 +12,6 @@ const MovieDetails = () => {
     const [cast, setCast] = useState(null);
     const [reviews, setReviews] = useState(null);
     const [error, setError] = useState(null);
-    console.log('movieId', movieId);
     
     let backLinkHref = location.state?.from ?? '/';
     
@@ -21,8 +20,7 @@ const MovieDetails = () => {
         const fetchData = async () => {        
         try {
             setLoading(prevLoading => !prevLoading);
-                const data = await searchById(movieId);  
-                console.log('data', data);
+                const data = await searchById(movieId);                  
                 setMovie(data);                
         } catch (error) {
             setError(error.message);
@@ -38,28 +36,22 @@ const MovieDetails = () => {
         const handleCastClick = async () => {
         let data;
             try {
-                data = await searchCast(movieId);
-                console.log('data', data);
+                data = await searchCast(movieId);                
                 setCast(data);
             } catch (error) {
-                console.log(error.message);
-            } finally {
-                console.log('cast', cast);
-            }  
+                setError(error.message);
+            } 
             return data;
     }    
     
     const handleReviewsClick = async () => {
         let data;
             try {
-                data = await searchReviews(movieId);
-                console.log('data', data);
+                data = await searchReviews(movieId);                
                 setReviews(data);
             } catch (error) {
-                console.log(error.message);
-            } finally {
-                console.log('reviews', reviews);
-            }  
+                setError(error.message);
+            } 
         return data;
         }
 

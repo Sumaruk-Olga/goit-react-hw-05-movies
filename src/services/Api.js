@@ -13,8 +13,7 @@ export const searchTrending = async () => {
 
 export const searchByName = async (name) => {    
     const url = `${baseUrl}search/movie?api_key=${key}&language=en-US&page=1&query=${name}&include_adult=false`;
-    const response = await axios.get(url);
-    console.log('response.data', response.data);
+    const response = await axios.get(url);    
     return response.data;
 };
 

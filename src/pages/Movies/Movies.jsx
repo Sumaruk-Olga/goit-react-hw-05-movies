@@ -45,8 +45,7 @@ const Movies = () => {
     }, [search]);
     
     const onSubmit = ({searchValue}) => {        
-        setSearchParams(searchValue !== '' ? { search: searchValue } : {});
-        console.log('search', search);
+        setSearchParams(searchValue !== '' ? { search: searchValue } : {});        
     }
 
     return <div>
