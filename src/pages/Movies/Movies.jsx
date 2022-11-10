@@ -11,6 +11,7 @@ const Movies = () => {
     const [loading, setLoading] = useState(false);
     const [movies, setMovies] = useState(null);
     const [error, setError] = useState(null);  
+    const [searchNotFound, setSearchNotFound] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get('search') ?? '';
 
@@ -22,10 +23,17 @@ const Movies = () => {
     useEffect(() => { 
         const fetchData = async () => {
         if (search === '') { return }
-            try {
-            setLoading(prevLoading => !prevLoading);
+            try {                
+                setMovies(null);
+                setSearchNotFound(null);
+                setLoading(prevLoading => !prevLoading);
                 const data = await searchByName(search);
-                setMovies(data.results);
+                if (data.results.length === 0) {
+                    setSearchNotFound(`can't found ${search}`)
+                } else {
+                    setMovies(data.results);
+                    setSearchNotFound(null);
+                }           
         } catch (error) {
             setError(error.message);
         }finally {
@@ -36,11 +44,11 @@ const Movies = () => {
         
     }, [search]);
     
-    const onSubmit = ({searchValue}) => {
-        // console.log('searchValue', searchValue);
+    const onSubmit = ({searchValue}) => {        
         setSearchParams(searchValue !== '' ? { search: searchValue } : {});
         console.log('search', search);
     }
+
     return <div>
         <p>Movies searchbar</p>
         <Formik initialValues={{ searchValue: '' }}
@@ -62,8 +70,8 @@ const Movies = () => {
         </Formik>
         {loading && <Loading />}
         {error && <div>Sorry, ...</div>}
-        { movies?.length > 0 && <>
-            
+        {searchNotFound && <div>{ searchNotFound }</div>}
+        { movies?.length > 0 && <>            
             <ul>{movies.map(item => {
                 const movieId = item.id;
                 return <li key={item.id}>
@@ -77,6 +85,3 @@ const Movies = () => {
     </div>
 };
 export default Movies;
-
-//замість "movieId" треба буде вставляти динамічно
-// { ` &{qwe} ` }
