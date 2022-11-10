@@ -18,12 +18,24 @@ export const searchByName = async (name) => {
     return response.data;
 };
 
-export const searchById = async (id) => {
-    console.log('id', id);
+export const searchById = async (id) => {    
     const movie_id = id;
     const url = `${baseUrl}movie/${movie_id}?api_key=${key}&language=en-US`;
     const response = await axios.get(url);
     return response.data;
 };
 
-// https://api.themoviedb.org/3/movie/{movie_id}?api_key=52a5edf0dabfbaff9453a6a42fe80ed9&language=en-US
+export const searchCast = async (id) => {
+    const movie_id = id;
+    const url = `${baseUrl}movie/${movie_id}/credits?api_key=${key}&language=en-US`;
+    const response = await axios.get(url);
+    return response.data;
+};
+
+export const searchReviews = async (id) => {
+    const movie_id = id;
+    const url = `${baseUrl}movie/${movie_id}/reviews?api_key=${key}&language=en-US&page=1`;
+    const response = await axios.get(url);
+    return response.data;
+};
+

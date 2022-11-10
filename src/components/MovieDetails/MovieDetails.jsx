@@ -2,25 +2,27 @@ import { Outlet, useLocation, useParams } from "react-router-dom";
 import { Suspense, useEffect, useState } from "react";
 import StyledLink from "components/SharedNavigation/SharedNavigstion.styled";
 import { Loading } from "components/Loading/Loading";
-import { searchById } from "services/Api";
+import { searchById, searchCast, searchReviews } from "services/Api";
 
 const MovieDetails = () => {    
     const { movieId } = useParams();
     const location = useLocation();
     const [loading, setLoading] = useState(false);
     const [movie, setMovie] = useState(null);
+    const [cast, setCast] = useState(null);
+    const [reviews, setReviews] = useState(null);
     const [error, setError] = useState(null);
-    // console.log('movieId', movieId);
+    console.log('movieId', movieId);
     
     let backLinkHref = location.state?.from ?? '/';
-    // console.log('backLinkHref.pathname', backLinkHref.pathname);        
+    
 
     useEffect(() => { 
         const fetchData = async () => {        
         try {
             setLoading(prevLoading => !prevLoading);
                 const data = await searchById(movieId);  
-                // console.log('data', data);
+                console.log('data', data);
                 setMovie(data);                
         } catch (error) {
             setError(error.message);
@@ -32,6 +34,32 @@ const MovieDetails = () => {
         
     }, [ movieId]);
 
+
+        const handleCastClick = async () => {
+        let data;
+            try {
+                data = await searchCast(movieId);
+                console.log('data', data);
+            } catch (error) {
+                console.log(error.message);
+            } finally {
+                setCast(data);
+            }       
+    }    
+    
+    const handleReviewsClick = async () => {
+        let data;
+            try {
+                data = await searchReviews(movieId);
+                console.log('data', data);
+            } catch (error) {
+                console.log(error.message);
+            } finally {
+                setReviews(data);
+        }    
+        return data
+        }
+
     return <div>        
         {loading && <Loading />}
         {error && <div>Sorry, ...</div>}
@@ -41,8 +69,8 @@ const MovieDetails = () => {
             </StyledLink>
             <p>MovieDetails</p>
             <p>some info</p>
-            <StyledLink to="cast" state={{ from: location.state.from }}>link for more cast details</StyledLink>
-            <StyledLink to="reviews" state={{ from: location.state.from }}>link for more reviews details</StyledLink>
+            <StyledLink to="cast" state={{ from: location.state.from, state:cast }} onClick={handleCastClick}>link for more cast details</StyledLink>
+            <StyledLink to="reviews" state={{ from: location.state.from, state:reviews }} id={movieId} onClick={handleReviewsClick}>link for more reviews details</StyledLink>
             <Suspense fallback={<Loading/>}>
                 <Outlet/>
             </Suspense>
