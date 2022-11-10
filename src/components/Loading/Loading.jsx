@@ -10,7 +10,7 @@ export function Loading (){
         radius="1"
             wrapperStyle={{}}
         wrapperClass=""
-        visible={true}
+            visible={true}
     />
 )
 }
