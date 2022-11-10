@@ -40,11 +40,13 @@ const MovieDetails = () => {
             try {
                 data = await searchCast(movieId);
                 console.log('data', data);
+                setCast(data);
             } catch (error) {
                 console.log(error.message);
             } finally {
-                setCast(data);
-            }       
+                console.log('cast', cast);
+            }  
+            return data;
     }    
     
     const handleReviewsClick = async () => {
@@ -52,12 +54,13 @@ const MovieDetails = () => {
             try {
                 data = await searchReviews(movieId);
                 console.log('data', data);
+                setReviews(data);
             } catch (error) {
                 console.log(error.message);
             } finally {
-                setReviews(data);
-        }    
-        return data
+                console.log('reviews', reviews);
+            }  
+        return data;
         }
 
     return <div>        

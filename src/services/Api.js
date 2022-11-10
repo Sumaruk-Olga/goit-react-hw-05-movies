@@ -38,4 +38,3 @@ export const searchReviews = async (id) => {
     const response = await axios.get(url);
     return response.data;
 };
-
