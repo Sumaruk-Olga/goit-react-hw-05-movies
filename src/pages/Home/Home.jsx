@@ -2,8 +2,8 @@ import { Loading } from "components/Loading/Loading";
 // import StyledLink from "components/SharedNavigation/SharedNavigstion.styled";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {searchTrendingApi} from "services/searchTrendingApi";
-// import
+import {searchTrending} from "services/Api";
+
 
 //  https://api.themoviedb.org/3/trending/all/day?api_key=52a5edf0dabfbaff9453a6a42fe80ed9
 
@@ -17,13 +17,9 @@ const Home = () => {
         const fetchData = async () => {
             try {
                 setLoading(prevLoading => !prevLoading);
-                const data = await searchTrendingApi();
+                const data = await searchTrending();
                 setMovies(data);
-                // console.log('movies', movies);
-
             } catch (error) {
-                console.log(error.message);
-                console.log(error.response);
                 setError(error.message);
             } finally {
                 setLoading(prevLoading => !prevLoading);
@@ -35,7 +31,7 @@ const Home = () => {
     return <div>
         {loading && <Loading />}
         {error && <div>Sorry, ...</div>}
-        { movies?.length > 0 ? <>
+        { movies?.length > 0 && <>
             <p>Trending </p>
             <ul>{movies.map(item => {
                 const movieId = item.id;
@@ -45,11 +41,8 @@ const Home = () => {
             })}
             </ul>
 
-            </> : <Loading />
-        }
-        
-        
-        
+            </>
+        } 
     </div>
 };
 export default Home;

@@ -2,15 +2,39 @@ import { Field, Form, Formik } from "formik";
 import * as Yup from 'yup';
 import { FcSearch } from "react-icons/fc";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { searchByName } from "services/Api";
+import { Loading } from "components/Loading/Loading";
 
 const Movies = () => {
     const location = useLocation();
+    const [loading, setLoading] = useState(false);
+    const [movies, setMovies] = useState(null);
+    const [error, setError] = useState(null);  
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get('search') ?? '';
 
     const validationSchema = Yup.object({
         searchValue: Yup.string().required(),
 });
+    
+
+    useEffect(() => { 
+        const fetchData = async () => {
+        if (search === '') { return }
+            try {
+            setLoading(prevLoading => !prevLoading);
+                const data = await searchByName(search);
+                setMovies(data.results);
+        } catch (error) {
+            setError(error.message);
+        }finally {
+                setLoading(prevLoading => !prevLoading);
+            }
+        };
+        fetchData();
+        
+    }, [search]);
     
     const onSubmit = ({searchValue}) => {
         // console.log('searchValue', searchValue);
@@ -36,8 +60,21 @@ const Movies = () => {
                 </button>
             </Form>
         </Formik>
-        <p>list of films after fetch</p>
-        <Link to="movieId" state={{ from: location }}>film</Link>
+        {loading && <Loading />}
+        {error && <div>Sorry, ...</div>}
+        { movies?.length > 0 && <>
+            
+            <ul>{movies.map(item => {
+                const movieId = item.id;
+                return <li key={item.id}>
+                    <Link to={`/movies/${movieId}`} state={{ from: location }} >{item.title}</Link>
+                </li>
+            })}
+            </ul>
+
+            </> 
+        } 
+        {/* <Link to="movieId" state={{ from: location }}>film</Link> */}
     </div>
 };
 export default Movies;
