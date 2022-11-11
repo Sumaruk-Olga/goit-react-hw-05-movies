@@ -10,7 +10,7 @@ const Reviews = lazy(() => import("pages/Reviews/Reviews"));
 
 const App = () => {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<SharedNavigstion />}>
           <Route index element={ <Home/>} />
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </div>
+    </>
   );
 };
 

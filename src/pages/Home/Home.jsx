@@ -1,10 +1,14 @@
+import { Error, Page } from "components/common/common.styled";
+import Gallery from "components/Gallery/Gallery";
 import { Loading } from "components/Loading/Loading";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import {searchTrending} from "services/Api";
+import { PageTitle } from "./Home.styled";
+
 
 const Home = () => {
-    const location = useLocation();
+    // const location = useLocation();
     const [loading, setLoading] = useState(false);
     const [movies, setMovies] = useState(null);
     const [error, setError] = useState(null);
@@ -24,20 +28,24 @@ const Home = () => {
     fetchData();
 }, []);
 
-    return <main>        
+    return <Page>        
         {loading && <Loading />}
-        {error && <h1>Sorry, ...</h1>}
+        {error && <Error>Sorry, something went wrong. Please, refresh the page.</Error>}
         { movies?.length > 0 && <>
-            <h1>Trending movies</h1>
-            <ul>{movies.map(item => {
+            <PageTitle>Trending movies</PageTitle>
+            <Gallery movies={movies}/>
+            {/* <MovieList>{movies.map(item => {
                 const movieId = item.id;
-                return <li key={item.id}>
-                    <Link to={`/movies/${movieId}`} state={{ from: location }} >{item.title}</Link>
-                </li>
+                return <MovieCard key={item.id}>
+                    <Link to={`/movies/${movieId}`} state={{ from: location }} >
+                        <Poster/>
+                        <MovieTitle>{item.title}</MovieTitle>
+                    </Link>
+                </MovieCard>
             })}
-            </ul>
+            </MovieList> */}
             </>
         } 
-    </main>
+    </Page>
 };
 export default Home;

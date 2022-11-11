@@ -1,13 +1,15 @@
-import { Field, Form, Formik } from "formik";
+import { Formik } from "formik";
 import * as Yup from 'yup';
 import { FcSearch } from "react-icons/fc";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { searchByName } from "services/Api";
 import { Loading } from "components/Loading/Loading";
+import { Error, Page } from "components/common/common.styled";
+import Gallery from "components/Gallery/Gallery";
+import { SearchBar, SearchButton, StyledField } from "./Movies.styled";
 
 const Movies = () => {
-    const location = useLocation();
     const [loading, setLoading] = useState(false);
     const [movies, setMovies] = useState(null);
     const [error, setError] = useState(null);  
@@ -48,38 +50,28 @@ const Movies = () => {
         setSearchParams(searchValue !== '' ? { search: searchValue } : {});        
     }
 
-    return <main>        
+    return <Page>
         <Formik initialValues={{ searchValue: '' }}
             validationSchema={validationSchema}
             onSubmit={(values, {resetForm}) => {
                 onSubmit(values);
                 resetForm();
     }}>
-            <Form>
-                <Field type="text"
+            <SearchBar>
+                <StyledField type="text"
                     name="searchValue"
                     autoComplete="off"
                     autoFocus
                     placeholder="Search film"/>
-                <button type="submit">
+                <SearchButton type="submit">
                     <FcSearch/>
-                </button>
-            </Form>
-        </Formik>
+                </SearchButton>
+            </SearchBar>
+            </Formik>
         {loading && <Loading />}
-        {error && <div>Sorry, ...</div>}
-        {searchNotFound && <div>{ searchNotFound }</div>}
-        { movies?.length > 0 && <>            
-            <ul>{movies.map(item => {
-                const movieId = item.id;
-                return <li key={item.id}>
-                    <Link to={`/movies/${movieId}`} state={{ from: location }} >{item.title}</Link>
-                </li>
-            })}
-            </ul>
-
-            </> 
-        }         
-    </main>
+        {error && <Error>Sorry, ...</Error>}
+        {searchNotFound && <Error>{ searchNotFound }</Error>}
+        {movies?.length > 0 && <Gallery movies={movies} /> }         
+    </Page>
 };
 export default Movies;

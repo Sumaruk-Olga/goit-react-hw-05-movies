@@ -26,7 +26,7 @@ const Reviews = () => {
     return (<>
         {loading && <Loading />}
         {error && <div>Sorry, ...</div>}
-        {reviews && <div>Reviews info </div>}
+        {reviews ? <div>Reviews info </div> : <div>Sorry, no more info</div>}
         
         </>)
 };

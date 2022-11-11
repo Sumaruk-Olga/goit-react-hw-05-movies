@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import { Suspense, useEffect, useState } from "react";
-import StyledLink from "components/SharedNavigation/SharedNavigstion.styled";
+import {StyledLink} from "components/SharedNavigation/SharedNavigstion.styled";
 import { Loading } from "components/Loading/Loading";
 import { searchById } from "services/Api";
 

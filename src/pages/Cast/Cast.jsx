@@ -26,7 +26,7 @@ const Cast = () => {
     return (<>
         {loading && <Loading />}
         {error && <div>Sorry, ...</div>}
-        {cast && <div>Cast info </div>}
+        { cast ? <div>Cast info </div> : <div>Sorry, no more info</div>}
         
         </>)
 };
