@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const MovieList = styled.ul`
+export const List = styled.ul`
     display: grid;
     max-width: calc(100vw - 12px);
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

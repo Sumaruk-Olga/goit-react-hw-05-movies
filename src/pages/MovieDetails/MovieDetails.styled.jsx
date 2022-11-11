@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { NavLink } from "react-router-dom";
 
 export const GoBackLink = styled(NavLink)`  
-  position: absolute;
+  position: sticky;
   top: 0;
   right: 0;
   display: block;
@@ -13,6 +13,7 @@ export const GoBackLink = styled(NavLink)`
   cursor: pointer;
   margin-top: ${p => p.theme.space[4]}px;
   margin-right: ${p => p.theme.space[4]}px;
+  margin-left: auto;
   text-align: center;
   font-size: ${p => p.theme.fontSizes.l};
   font-weight: 500;

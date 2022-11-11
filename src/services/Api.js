@@ -26,7 +26,7 @@ export const searchById = async (movie_id) => {
 export const searchCast = async (movie_id) => {
     const url = `${baseUrl}/movie/${movie_id}/credits?api_key=${key}&language=en-US`;
     const response = await axios.get(url);
-    return response.data;
+    return response.data.cast;
 };
 
 export const searchReviews = async (movie_id) => {

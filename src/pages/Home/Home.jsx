@@ -31,7 +31,7 @@ const Home = () => {
         {error && <Error>Sorry, something went wrong. Please, refresh the page.</Error>}
         { movies?.length > 0 && <>
             <PageTitle>Trending movies</PageTitle>
-            <Gallery movies={movies}/>
+            <Gallery arr={movies} use="movie"/>
         </>} 
     </Page>
 };

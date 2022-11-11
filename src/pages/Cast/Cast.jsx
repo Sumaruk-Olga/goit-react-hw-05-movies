@@ -1,3 +1,5 @@
+import { CastInfo } from "components/CastInfo/CastInfo";
+import { Error } from "components/common/common.styled";
 import { Loading } from "components/Loading/Loading";
 import { useEffect, useState, } from "react";
 import { useLocation } from "react-router-dom";
@@ -25,8 +27,8 @@ const Cast = () => {
     }, [location.state.state]);
     return (<>
         {loading && <Loading />}
-        {error && <div>Sorry, ...</div>}
-        { cast ? <div>Cast info </div> : <div>Sorry, no more info</div>}
+        {error && <Error>Sorry, ...</Error>}
+        {cast && <CastInfo arr={cast} /> }
         
         </>)
 };

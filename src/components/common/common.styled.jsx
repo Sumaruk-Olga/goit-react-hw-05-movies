@@ -17,3 +17,9 @@ export const PageTitle = styled.h1`
     margin-top:${p => p.theme.space[4]}px;   
 `;
 
+export const AdditionalInfoTitle = styled.h3`
+    display: block;
+    text-align: center;
+    margin-bottom:${p => p.theme.space[2]}px; 
+    margin-top:${p => p.theme.space[2]}px;
+`;

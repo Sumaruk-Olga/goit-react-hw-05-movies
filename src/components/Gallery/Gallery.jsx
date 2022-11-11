@@ -1,17 +1,28 @@
 import PropTypes, { shape } from 'prop-types';
 import GalleryItem from "components/GalleryItem/GalleryItem";
-import { MovieList } from "./Gallery.styled";
+import { List } from "./Gallery.styled";
+import { CastCard } from 'components/CastCard/CastCard';
 
-const Gallery = ({movies}) => {
-    return <MovieList>{movies.map(item => {        
-        return <GalleryItem item={item} key={item.id}/>
+const Gallery = ({ arr, use }) => {
+    if (use === "movie") {
+        return <List>{arr.map(item => {
+            return <GalleryItem item={item} key={item.id} />
         })}
-    </MovieList>
+        </List>
+    }
+    if (use === "cast") {
+        return <List>{arr.map(item => {
+            return <CastCard item={item} key={item.id} />
+            // return<p>{item.id}</p>
+        })}
+        </List>
+    }
 };
 export default Gallery;
 
 Gallery.propTypes = {
-    movies: PropTypes.arrayOf(shape({
+    arr: PropTypes.arrayOf(shape({
         id: PropTypes.number.isRequired,
-    })).isRequired,        
+    })).isRequired, 
+    use: PropTypes.string.isRequired,
 }

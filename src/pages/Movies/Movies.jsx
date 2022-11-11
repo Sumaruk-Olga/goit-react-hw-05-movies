@@ -71,7 +71,7 @@ const Movies = () => {
         {loading && <Loading />}
         {error && <Error>Sorry, ...</Error>}
         {searchNotFound && <Error>{ searchNotFound }</Error>}
-        {movies?.length > 0 && <Gallery movies={movies} /> }         
+        {movies?.length > 0 && <Gallery arr={movies} use="movie"/> }         
     </Page>
 };
 export default Movies;
