@@ -1,8 +1,11 @@
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import { Suspense, useEffect, useState } from "react";
-import {StyledLink} from "components/SharedNavigation/SharedNavigstion.styled";
+import { GoBackLink, StyledLink, AdditionalInfo } from "./MovieDetails.styled";
 import { Loading } from "components/Loading/Loading";
 import { searchById } from "services/Api";
+import { MovieInfoCard } from "components/MovieInfoCard/MovieInfoCard";
+import { Error, Page } from "components/common/common.styled";
+
 
 const MovieDetails = () => {    
     const { movieId } = useParams();
@@ -30,21 +33,20 @@ const MovieDetails = () => {
         
     }, [movieId]);
 
-    return <main>        
+    return <Page>        
         {loading && <Loading />}
-        {error && <div>Sorry, ...</div>}
+        {error && <Error>Sorry, something went wrong :(</Error>}
         {movie && <>
-            <StyledLink to={backLinkHref}>
-                <button type="button">go back</button>
-            </StyledLink>
-            <p>MovieDetails</p>
-            <p>some info</p>
-            <StyledLink to="cast" state={{ from: location.state.from, state:movieId }} >link for more cast details</StyledLink>
-            <StyledLink to="reviews" state={{ from: location.state.from, state:movieId }}>link for more reviews details</StyledLink>
-            <Suspense fallback={<Loading/>}>
+            <GoBackLink to={backLinkHref}>go back</GoBackLink>
+            <MovieInfoCard movie={movie} />
+            <AdditionalInfo>
+                <StyledLink to="cast" state={{ from: location.state.from, state:movieId }} >link for more cast details</StyledLink>
+                <StyledLink to="reviews" state={{ from: location.state.from, state:movieId }}>link for more reviews details</StyledLink>
+            </AdditionalInfo>
+            <Suspense fallback={<Loading />}>
                 <Outlet/>
             </Suspense>
         </>}
-    </main>
+    </Page>
 };
 export default MovieDetails;

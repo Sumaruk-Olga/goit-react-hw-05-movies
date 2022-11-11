@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
-import { MovieCard, Poster, Link } from "./GalleryItem.styled";
+import { MovieCard, Link, Poster } from "./GalleryItem.styled";
 
 import { makeImageSrc } from "services/Api";
+
 
 const GalleryItem = ({ item }) => {
     const {id, poster_path, title } = item;

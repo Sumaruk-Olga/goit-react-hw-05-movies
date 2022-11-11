@@ -3,7 +3,7 @@ import Gallery from "components/Gallery/Gallery";
 import { Loading } from "components/Loading/Loading";
 import { useEffect, useState } from "react";
 import {searchTrending} from "services/Api";
-import { PageTitle } from "./Home.styled";
+import { PageTitle } from "components/common/common.styled";
 
 
 const Home = () => {

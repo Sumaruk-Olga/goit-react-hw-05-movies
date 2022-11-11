@@ -8,3 +8,12 @@ export const Error = styled.h1`
 background-color: red;
 color: black;
 `;
+
+export const PageTitle = styled.h1`
+    display: block;
+    text-align: center;
+    font-style: italic;
+    margin-bottom:${p => p.theme.space[4]}px; 
+    margin-top:${p => p.theme.space[4]}px;   
+`;
+
