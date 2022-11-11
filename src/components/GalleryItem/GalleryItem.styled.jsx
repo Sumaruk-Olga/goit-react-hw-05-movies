@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 
 export const MovieCard = styled.li`
     border-radius: ${p => p.theme.space[3]}px;
@@ -11,10 +12,14 @@ export const MovieCard = styled.li`
     }
     `;
 
-export const MovieTitle = styled.p``;
-
 export const Poster = styled.img`
- width: 100%;
+    width: 100%;
     height: 260px;
     object-fit: cover;    
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);`;
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    `;
+
+export const Link = styled(NavLink)`
+color: ${p => p.theme.text.primary};
+text-decoration: none;
+`;

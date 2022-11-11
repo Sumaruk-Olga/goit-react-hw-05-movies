@@ -30,6 +30,8 @@ export const SearchBar = styled(Form)`
 
 export const SearchButton = styled.button`
     display: inline-block;
+    width: 40px;
+    height: 40px;
     width: ${p => p.theme.space[6]}px;
     height: ${p => p.theme.space[6]}px;
     border: 0;  
