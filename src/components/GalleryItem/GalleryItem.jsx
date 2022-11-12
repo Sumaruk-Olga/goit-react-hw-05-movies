@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { MovieCard, Link, Poster } from "./GalleryItem.styled";
 
 import { makeImageSrc } from "services/Api";
+import { Icon } from "components/common/common.styled";
 
 
 const GalleryItem = ({ item }) => {
@@ -12,7 +13,7 @@ const GalleryItem = ({ item }) => {
     const url = makeImageSrc(poster_path);
     return <MovieCard>
     <Link to={`/movies/${movieId}`} state={{ from: location }} >
-            <Poster alt={title} src={ url} />            
+            {poster_path ? <Poster alt={title} src={ url} /> : <Icon/>}            
             <p>{ title }</p>
     </Link>
 </MovieCard>

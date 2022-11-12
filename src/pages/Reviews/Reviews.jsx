@@ -1,4 +1,6 @@
+import { Error } from "components/common/common.styled";
 import { Loading } from "components/Loading/Loading";
+import { ReviewsInfo } from "components/ReviewsInfo/ReviewsInfo";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { searchReviews } from "services/Api";
@@ -25,8 +27,8 @@ const Reviews = () => {
     }, [location.state.state]);
     return (<>
         {loading && <Loading />}
-        {error && <div>Sorry, ...</div>}
-        {reviews ? <div>Reviews info </div> : <div>Sorry, no more info</div>}
+        {error && <Error>Sorry, ...</Error>}
+        {reviews ? <ReviewsInfo reviews={reviews} /> : <div>Sorry, no more info</div>}
         
         </>)
 };

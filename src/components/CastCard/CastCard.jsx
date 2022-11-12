@@ -1,5 +1,4 @@
-
-import { Icon } from "components/CastInfo/CastInfo.styled";
+import { Icon } from "components/common/common.styled";
 import { Container, Poster } from "components/MovieInfoCard/MovieInfoCard.styled"
 import { makeImageSrc } from "services/Api";
 

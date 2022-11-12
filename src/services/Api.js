@@ -32,7 +32,7 @@ export const searchCast = async (movie_id) => {
 export const searchReviews = async (movie_id) => {
     const url = `${baseUrl}/movie/${movie_id}/reviews?api_key=${key}&language=en-US&page=1`;
     const response = await axios.get(url);
-    return response.data;
+    return response.data.results;
 };
 
 export const makeImageSrc = (poster_path) => {    

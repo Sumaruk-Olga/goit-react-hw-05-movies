@@ -2,6 +2,7 @@ import PropTypes, { shape } from 'prop-types';
 import GalleryItem from "components/GalleryItem/GalleryItem";
 import { List } from "./Gallery.styled";
 import { CastCard } from 'components/CastCard/CastCard';
+import { ReviewsCard } from 'components/ReviewsCard/ReviewsCard';
 
 const Gallery = ({ arr, use }) => {
     if (use === "movie") {
@@ -13,9 +14,14 @@ const Gallery = ({ arr, use }) => {
     if (use === "cast") {
         return <List>{arr.map(item => {
             return <CastCard item={item} key={item.id} />
-            // return<p>{item.id}</p>
         })}
         </List>
+    }
+    if (use === "reviews") {
+        return <li>{arr.map(item => {
+            return <ReviewsCard item={item} key={item.id} />
+        })}
+        </li>
     }
 };
 export default Gallery;
