@@ -9,13 +9,16 @@ export const ReviewsCard = ({ item }) => {
     const { content, author_details } = item;
     const { username, avatar_path } = author_details;
     let url;
-    const crazyPath = avatar_path.startsWith('/http');
-    if(crazyPath){
-        url = avatar_path.slice(1);
-    } else {
-        const poster_path = avatar_path;
-        url = makeImageSrc(poster_path);
-    }
+    // console.log('avatar_path', avatar_path);
+    if (avatar_path) {
+        const crazyPath = avatar_path.startsWith('/http');
+        if(crazyPath){
+            url = avatar_path.slice(1);
+        } else {        
+            const poster_path = avatar_path;
+            url = makeImageSrc(poster_path);
+        }
+    }     
     
     return <ReviewItem>        
         <Wrapper>
