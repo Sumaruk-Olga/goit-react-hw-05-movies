@@ -1,3 +1,4 @@
+import PropTypes, { shape } from "prop-types"
 import { PageTitle } from "components/common/common.styled";
 import { makeImageSrc } from "services/Api";
 import { InfoTitle, Poster, InfoData, DataTitle, DataText, Wrapper, Container } from "./MovieInfoCard.styled";
@@ -28,3 +29,18 @@ export const MovieInfoCard = ({ movie }) => {
     </article>
 };
 
+MovieInfoCard.propTypes = {
+    movie: PropTypes.shape({
+        original_title: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        poster_path: PropTypes.string.isRequired,
+        release_date: PropTypes.string.isRequired,
+        genres: PropTypes.arrayOf(shape({
+            name: PropTypes.string.isRequired,
+        })).isRequired,
+        vote_average: PropTypes.number.isRequired,
+        vote_count: PropTypes.number.isRequired,
+        overview: PropTypes.string.isRequired,
+
+    })
+}

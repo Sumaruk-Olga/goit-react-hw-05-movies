@@ -69,7 +69,7 @@ const Movies = () => {
             </SearchBar>
             </Formik>
         {loading && <Loading />}
-        {error && <Error>Sorry, ...</Error>}
+        {error && <Error>Sorry, can't found {search}</Error>}
         {searchNotFound && <Error>{ searchNotFound }</Error>}
         {movies?.length > 0 && <Gallery arr={movies} use="movie"/> }         
     </Page>

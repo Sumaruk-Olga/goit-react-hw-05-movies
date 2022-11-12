@@ -28,7 +28,7 @@ const Reviews = () => {
     return (<>
         {loading && <Loading />}
         {error && <Error>Sorry, ...</Error>}
-        {reviews ? <ReviewsInfo reviews={reviews} /> : <div>Sorry, no more info</div>}
+        {reviews && <ReviewsInfo reviews={reviews} /> }
         
         </>)
 };
