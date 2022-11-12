@@ -41,8 +41,8 @@ const MovieDetails = () => {
             <GoBackLink to={backLinkHref}>go back</GoBackLink>
             <MovieInfoCard movie={movie} />
             <AdditionalInfo>
-                <StyledLink to="cast" state={{ from: location.state.from, state:movieId }} >link for more cast details</StyledLink>
-                <StyledLink to="reviews" state={{ from: location.state.from, state:movieId }}>link for more reviews details</StyledLink>
+                <StyledLink to="cast" state={{ from: location.state.from, state:movieId }} >cast details</StyledLink>
+                <StyledLink to="reviews" state={{ from: location.state.from, state:movieId }}>reviews details</StyledLink>
             </AdditionalInfo>
             <Suspense fallback={<Loading />}>
                 <Outlet/>
