@@ -25,7 +25,8 @@ const Movies = () => {
     useEffect(() => { 
         const fetchData = async () => {
         if (search === '') { return }
-            try {                
+            try {    
+                setError(null);
                 setMovies(null);
                 setSearchNotFound(null);
                 setLoading(prevLoading => !prevLoading);

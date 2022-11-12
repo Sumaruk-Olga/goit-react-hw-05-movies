@@ -16,9 +16,7 @@ export const ReviewsCard = ({ item }) => {
         const poster_path = avatar_path;
         url = makeImageSrc(poster_path);
     }
-    // console.log('crazyPath', crazyPath);
-    // console.log('avatar_path', avatar_path);
-    // console.log('url', url);
+    
     return <ReviewItem>        
         <Wrapper>
             <Container>

@@ -14,8 +14,9 @@ const Reviews = () => {
     useEffect(() => { 
         const fetchData = async () => {        
             try {
+                setError(null);
                 setLoading(prevLoading => !prevLoading);
-                const data = await searchReviews(location.state.state);                  
+                const data = await searchReviews(location.state.state);  
                 setReviews(data);                
         } catch (error) {
             setError(error.message);
@@ -26,10 +27,10 @@ const Reviews = () => {
         fetchData();
     }, [location.state.state]);
     return (<>
-        {loading && <Loading />}
         {error && <Error>Sorry, ...</Error>}
-        {reviews && <ReviewsInfo reviews={reviews} /> }
-        
-        </>)
+        {loading && <Loading />}           
+        {reviews?.length > 0 && <ReviewsInfo reviews={reviews} />}
+        { reviews?.length === 0 && <div>We have no information about reviews :(</div>}    
+    </>);
 };
 export default Reviews;

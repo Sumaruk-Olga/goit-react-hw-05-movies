@@ -14,6 +14,7 @@ const Home = () => {
     useEffect(() => {     
     const fetchData = async () => {
         try {
+            setError(null);
             setLoading(prevLoading => !prevLoading);
             const data = await searchTrending();
             setMovies(data);

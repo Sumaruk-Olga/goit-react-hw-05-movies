@@ -14,8 +14,9 @@ const Cast = () => {
     useEffect(() => { 
         const fetchData = async () => {        
             try {
+                setError(null);
                 setLoading(prevLoading => !prevLoading);
-                const data = await searchCast(location.state.state);                  
+                const data = await searchCast(location.state.state); 
                 setCast(data);                
         } catch (error) {
             setError(error.message);
@@ -25,11 +26,11 @@ const Cast = () => {
         };
         fetchData();
     }, [location.state.state]);
-    return (<>
+    return (<>    
+        {error && <Error>Sorry, something went wrong. Try again</Error>}        
         {loading && <Loading />}
-        {error && <Error>Sorry, ...</Error>}
-        {cast && <CastInfo arr={cast} /> }
-        
-        </>)
+        {cast?.length > 0 && <CastInfo arr={cast} />}
+        {cast?.length === 0 && <div>We have no information about the cast :(</div>}
+    </>)
 };
 export default Cast;

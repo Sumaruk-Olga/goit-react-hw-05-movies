@@ -19,8 +19,9 @@ const MovieDetails = () => {
 
     useEffect(() => { 
         const fetchData = async () => {        
-        try {
-            setLoading(prevLoading => !prevLoading);
+            try {
+                setError(null);
+                setLoading(prevLoading => !prevLoading);
                 const data = await searchById(movieId);                  
                 setMovie(data);                
         } catch (error) {
