@@ -12,12 +12,13 @@ const MovieDetails = () => {
     const location = useLocation();
     const [movie, setMovie] = useState(null);
     const [loading, setLoading] = useState(false);    
-    const [error, setError] = useState(null);    
+    const [error, setError] = useState(null);  
     
-    let backLinkHref = location.state?.from ?? '/';
+    let backLinkHref = location?.state?.from ?? '/'; 
+    let currentLocation = location?.state?.from ?? location.pathname;
     
-
     useEffect(() => { 
+        
         const fetchData = async () => {        
             try {
                 setError(null);
@@ -36,13 +37,13 @@ const MovieDetails = () => {
 
     return <Page>        
         {loading && <Loading />}
-        {error && <Error>Sorry, something went wrong :(</Error>}
+        {error && <Error>Sorry, something went wrong  :(    Try again later</Error>}
         {movie && <>
             <GoBackLink to={backLinkHref}>go back</GoBackLink>
             <MovieInfoCard movie={movie} />
             <AdditionalInfo>
-                <StyledLink to="cast" state={{ from: location.state.from, state:movieId }} >cast details</StyledLink>
-                <StyledLink to="reviews" state={{ from: location.state.from, state:movieId }}>reviews details</StyledLink>
+                <StyledLink to="cast" state={{from:currentLocation, state:movieId }} >cast details</StyledLink>
+                <StyledLink to="reviews" state={{from:currentLocation, state:movieId }}>reviews details</StyledLink>
             </AdditionalInfo>
             <Suspense fallback={<Loading />}>
                 <Outlet/>
